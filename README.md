@@ -43,6 +43,18 @@ From the root directory
 
 The server will start on port 5001, the client will start & open a browser on http://localhost:3000/
 
+#### Docker
+From the root folder run:
+```bash
+docker build -t onto-web-demo .
+docker run -it -p 5001:5001 -p 3000:3000 onto-web-demo
+```
+### Docker compose
+From the root folder run:
+```bash
+docker-compose up
+```
+
 Reference: [Onto-Web-Demo](https://github.com/Sphereon/onto-web-demo)
 
 ## Demo RN
@@ -445,8 +457,4 @@ verifyAccessToken('ey......').then(jwt => {
     // output: iss: did:eosio:example
 })
 ````
-
 Reference: [DID-Auth-Siop](https://github.com/Sphereon-Opensource/did-auth-siop)
-
-## Gimly-ID-Mobile-App
-Reference: [Gimly-ID-Mobile-App](https://github.com/Gimly-Blockchain/gimly-id-mobile-app)
