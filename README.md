@@ -11,10 +11,9 @@ succeed, access to the protected resources is granted to the user. The user will
 view the protected resource. [GimlyID-QR-Code](#gimlyid-qr-code) and [GimlyID-QR-Code-Scanner](#gimlyid-qr-code-scanner)
 are employed to respectively generate and read the QR code used in the authentication process.
 
-## Setup
-
-## Demo WEB
-
+## ONTO web demo
+This is the web application (RP) that generates the QR code and starts the authentication process;
+###Setup
 #### Configure environment
 In the onto-demo-server folder, create a file called .env.local and populate it using .env as example.
 A valid config will look like this
@@ -44,8 +43,16 @@ From the root directory
 
 The server will start on port 5001, the client will start & open a browser on http://localhost:3000/
 
-## Demo RN
+Reference: [Onto-Web-Demo](https://github.com/Sphereon/onto-web-demo)
 
+## Demo RN
+This is the React-Native application (OP) that stores the self issued credentials
+###Setup
+### Requirements
+- The Android device must have a fingerprint reader
+- Make sure you have the Android platform SDK installed on your computer, your mobile is plugged in and in debug mode.
+- Execute adb devices and confirm your device is listed
+- yarn android
 ### To build
 clone the repository:
 ```bash
@@ -55,12 +62,7 @@ From the root directory
 - yarn install
 - yarn nodeify
 
-### Requirements
-- The Android device must have a fingerprint reader
-- Make sure you have the Android platform SDK installed on your computer, your mobile is plugged in and in debug mode.
-- Execute adb devices and confirm your device is listed
-- yarn android
-
+Reference: [Demo-RN](https://github.com/Sphereon/rn-did-siop-example-app)
 ## GimlyID QR Code
 This is the QR code generator, it works with React and React-Native. It generates a QR code containing:
 
@@ -85,16 +87,6 @@ A GimlyID QR code scanner component for React-Native. This scanner can scan QR c
 | `onRead`             | `Function`                   |               | The onRead will be called when the QR code is read and will have access to the QR content. |
 
 Reference: [GimlyID-QR-Code-Scanner](https://github.com/Sphereon-Opensource/gimlyid-qr-code-scanner):
-
-## ONTO web demo
-This is the web application (RP) that generates the QR code and starts the authentication process;
-
-Reference: [Onto-Web-Demo](https://github.com/Sphereon/onto-web-demo)
-
-## Demo RN
-This is the React-Native application (OP) that stores the self issued credentials
-
-Reference: [Demo-RN](https://github.com/Sphereon/rn-did-siop-example-app)
 
 ## DID Auth Siop
 SIOP v2 (REFRENCE) is an extension of OpenID Connect (REFRENCE) to allow End-users to act as OpenID Providers (OPs)
@@ -121,7 +113,6 @@ the Relying Party upon the End-user's consent. This means the End-User is in con
 Flow diagram:
 
 ![Flow diagram](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Sphereon-Opensource/did-auth-siop/develop/docs/auth-flow-diagram.txt)
-
 
 1. Client (OP) initiates an Auth request by POST-ing to an endpoint, like for instance `/did-siop/v1/authentications` or clicking a Login button and scanning a QR code
 2. Web (RP) receives the request and access the RP object which creates the authentication request as JWT, signs it and returns the response as an OpenID Connect URI
