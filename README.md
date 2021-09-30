@@ -16,7 +16,7 @@ are employed to respectively generate and read the QR code used in the authentic
 ## Demo WEB
 
 #### Configure environment
-In the onto-demo-server folder, create a files called .env.local and populate it using .env as example.
+In the onto-demo-server folder, create a file called .env.local and populate it using .env as example.
 A valid config will look like this
 ```dotenv
 NODE_ENV=development
@@ -31,6 +31,10 @@ MOCK_AUTH_RESPONSE=false
 (Exception for the IP address this is a valid configuration to test with.)
 
 #### Build & start
+clone the repository:
+```bash
+git clone git@github.com:Sphereon/onto-web-demo.git
+```
 From the root directory
 - yarn global add concurrently
 - yarn global add ts-node
@@ -43,10 +47,16 @@ The server will start on port 5001, the client will start & open a browser on ht
 ## Demo RN
 
 ### To build
+clone the repository:
+```bash
+git clone git@github.com:Sphereon/rn-did-siop-example-app.git
+```
+From the root directory
 - yarn install
 - yarn nodeify
 
 ### Requirements
+- The Android device must have a fingerprint reader
 - Make sure you have the Android platform SDK installed on your computer, your mobile is plugged in and in debug mode.
 - Execute adb devices and confirm your device is listed
 - yarn android
@@ -79,19 +89,10 @@ Reference: [GimlyID-QR-Code-Scanner](https://github.com/Sphereon-Opensource/giml
 ## ONTO web demo
 This is the web application (RP) that generates the QR code and starts the authentication process;
 
-## Endpoints
-| endpoint                 | http method | description |
-| -------------------------| ------------| ------------|
-| `/authenticate`          | `GET`       |             |
-| `/get-qr-variables`      | `GET`       |             |
-| `/register-auth-request` | `POST`      |             |
-| `/poll-auth-response`    | `POST`      |             |
-
 Reference: [Onto-Web-Demo](https://github.com/Sphereon/onto-web-demo)
 
 ## Demo RN
 This is the React-Native application (OP) that stores the self issued credentials
--> Needs input from Sander
 
 Reference: [Demo-RN](https://github.com/Sphereon/rn-did-siop-example-app)
 
