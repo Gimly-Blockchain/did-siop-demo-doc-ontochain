@@ -11,6 +11,9 @@ succeed, access to the protected resources is granted to the user. The user will
 view the protected resource. [GimlyID-QR-Code](#gimlyid-qr-code) and [GimlyID-QR-Code-Scanner](#gimlyid-qr-code-scanner)
 are employed to respectively generate and read the QR code used in the authentication process.
 
+## Authentication Flow
+![ONTO Demo Flow](https://lucid.app/publicSegments/view/02cb0788-5fe6-4fcd-91f6-3f82d6ca1402/image.png)
+
 ## ONTO web demo
 This is the web application (RP) that generates the QR code and starts the authentication process;
 ###Setup
