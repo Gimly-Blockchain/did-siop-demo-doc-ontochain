@@ -73,7 +73,6 @@ This is the React-Native application (OP) that stores the self issued credential
 - The Android device must have a fingerprint reader
 - Make sure you have the Android platform SDK installed on your computer, your mobile is plugged in and in debug mode.
 - Execute adb devices and confirm your device is listed
-- yarn android
 ### To build
 clone the repository:
 ```bash
@@ -82,6 +81,7 @@ git clone git@github.com:Sphereon/rn-did-siop-example-app.git
 From the root directory
 - yarn install
 - yarn nodeify
+- yarn install
 
 Reference: [Demo-RN](https://github.com/Sphereon/rn-did-siop-example-app)
 ## GimlyID QR Code
