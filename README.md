@@ -81,7 +81,7 @@ git clone git@github.com:Sphereon/rn-did-siop-example-app.git
 From the root directory
 - yarn install
 - yarn nodeify
-- yarn install
+- yarn android
 
 Reference: [Demo-RN](https://github.com/Sphereon/rn-did-siop-example-app)
 ## GimlyID QR Code
