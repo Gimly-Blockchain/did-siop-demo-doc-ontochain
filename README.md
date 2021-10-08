@@ -26,6 +26,7 @@ This is the web application (RP) that generates the QR code and starts the authe
 clone the repository:
 
 ```bash
+cd <workspace>
 git clone git@github.com:Sphereon/onto-web-demo.git
 cd onto-demo-server
 ```
@@ -33,6 +34,8 @@ cd onto-demo-server
 #### Configure environment
 
 In the `onto-demo-server` folder, create a file called `.env.local` and populate it using `.env` as example.  A valid config will look like this:
+
+Find the development machine's IP and use it in the file bellow. The `REDIRECT_URL_BASE` should look like `http://<devMachine'sIP>:5001/ext`
 
 ```dotenv
 NODE_ENV=development
@@ -50,7 +53,7 @@ MOCK_AUTH_RESPONSE=false
 From the root directory
 
 ```bash
-cd onto-web-demo
+cd <workspace>/onto-web-demo
 yarn global add concurrently
 yarn global add ts-node
 yarn install-all
@@ -65,6 +68,7 @@ The server will start on port `5001`, the client will start & open a browser on 
 From the root folder run:
 
 ```bash
+cd <workspace>/onto-web-demo
 docker build -t onto-web-demo .
 docker run -it -p 5001:5001 -p 3000:3000 onto-web-demo
 ```
@@ -74,6 +78,7 @@ docker run -it -p 5001:5001 -p 3000:3000 onto-web-demo
 From the root folder run:
 
 ```bash
+cd <workspace>/onto-web-demo
 docker-compose up
 ```
 
@@ -97,6 +102,7 @@ This is the React-Native application (OP) that stores the self issued credential
 clone the repository:
 
 ```bash
+cd <workspace>
 git clone git@github.com:Sphereon/rn-did-siop-example-app.git
 ```
 
