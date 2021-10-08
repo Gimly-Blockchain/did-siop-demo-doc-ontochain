@@ -13,10 +13,13 @@ This demo shows an authentication flow using the [DIDSIOP library](#did-auth-sio
 ## Authentication Flow
 ![ONTO Demo Flow](https://lucid.app/publicSegments/view/02cb0788-5fe6-4fcd-91f6-3f82d6ca1402/image.png)
 
+## Video demo
+This video is a demo about the Webapp and the mobile app. Exactly what will be setup when you follow this document: https://youtu.be/cqoKuQWPj-s
+
 ## ONTO web demo
 This is the web application (RP) that generates the QR code and starts the authentication process;
 
-###Setup
+### Setup
 
 #### Build & start
 
@@ -82,7 +85,8 @@ Reference: [did-siop-auth-web-demo](https://github.com/Gimly-Blockchain/did-siop
 
 ## Demo RN
 This is the React-Native application (OP) that stores the self issued credentials
-###Setup
+
+### Setup
 ### Requirements
 - The Android device must have a fingerprint reader
 - Make sure you have the Android platform SDK installed on your computer, your mobile is plugged in and in debug mode.
@@ -102,6 +106,12 @@ yarn install
 yarn nodeify
 yarn android
 ```
+
+At this point you should have everything ready to test the mobile app with the webapp. See https://youtu.be/cqoKuQWPj-s for a demo of the mobile app and webapp.
+The section below is about building and setting up other related components
+
+
+
 
 Reference: [RN-Did-Siop-Example-App](https://github.com/Gimly-Blockchain/rn-did-siop-example-app)
 ## GimlyID QR Code
