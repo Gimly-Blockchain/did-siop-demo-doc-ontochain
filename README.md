@@ -44,8 +44,6 @@ MOCK_AUTH_RESPONSE=false
 ```
 (Exception for the IP address this is a valid configuration to test with.)
 
-From the root directory
-
 ```bash
 cd <workspace>/onto-web-demo
 yarn global add concurrently
@@ -55,14 +53,14 @@ yarn build-types
 yarn start
 ```
 #### Docker
-From the root folder run:
+
 ```bash
 cd <workspace>/onto-web-demo
 docker build -t onto-web-demo .
 docker run -it -p 5001:5001 -p 3000:3000 onto-web-demo
 ```
 ### Docker compose
-From the root folder run:
+
 ```bash
 cd <workspace>/onto-web-demo
 docker-compose up
