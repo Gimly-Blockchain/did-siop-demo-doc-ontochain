@@ -54,15 +54,6 @@ yarn install-all
 yarn build-types
 yarn start
 ```
-From the root directory
-- yarn global add concurrently
-- yarn global add ts-node
-- yarn install-all
-- yarn build-types
-- yarn start
-
-The server will start on port `5001`, the client will start & open a browser on `http://localhost:3000/`
-
 #### Docker
 From the root folder run:
 ```bash
@@ -101,12 +92,6 @@ clone the repository:
 cd <workspace>
 git clone git@github.com:Sphereon/rn-did-siop-example-app.git
 ```
-From the root directory
-- yarn install
-- yarn nodeify
-- yarn android
-
-Note: Sphereon-Opensource/rn-did-siop-auth-lib.git may need to be removed from dependencies
 
 ```bash
 cd rn-did-siop-example-app
