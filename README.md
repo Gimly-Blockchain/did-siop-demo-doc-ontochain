@@ -4,21 +4,16 @@ ONTOCHAIN Demo
 </h1>
 <br>
 
-
 ## Summary
 
 This demo shows an authentication flow using the [DIDSIOP library](#did-auth-siop). The underlying technology allows a user to authenticate to a provider by scanning a QR code that is presented on by the relying party (RP). For this demo project, the [Demo WEB](#onto-web-demo) app is the relying party (RP) and the [Demo RN](#demo-rn) is the OpenID provider (OP). The flow starts with the RP where the user clicks a login button on the web page, after which a QR code is generated. The user scans the QR code using the Demo RN app, which in turn requests access to the protected resources hosted by the RP. Since the user is not logged in, an authentication request will be sent back to the OP. If the request is valid, the OP sends an authentication response back to the RP, which verifies the validity of response. If all steps succeed, access to the protected resources is granted to the user. The user will now be redirected on the web app to view the protected resource. [GimlyID-QR-Code](#gimlyid-qr-code) and [GimlyID-QR-Code-Scanner](#gimlyid-qr-code-scanner) are employed to respectively generate and read the QR code used in the authentication process.
 
 
 ## Authentication Flow
-
 ![ONTO Demo Flow](https://lucid.app/publicSegments/view/02cb0788-5fe6-4fcd-91f6-3f82d6ca1402/image.png)
 
-
 ## ONTO web demo
-
 This is the web application (RP) that generates the QR code and starts the authentication process;
-
 ###Setup
 
 #### Build & start
@@ -47,7 +42,6 @@ RP_PRIVATE_HEX_KEY=850e54b92c6291a1ff7b8c3ef30e032571ed77c9e5c78b1cd6ee5fec4fea9
 AUTH_REQUEST_EXPIRES_AFTER_SEC=300
 MOCK_AUTH_RESPONSE=false
 ```
-
 (Exception for the IP address this is a valid configuration to test with.)
 
 From the root directory
@@ -60,23 +54,24 @@ yarn install-all
 yarn build-types
 yarn start
 ```
+From the root directory
+- yarn global add concurrently
+- yarn global add ts-node
+- yarn install-all
+- yarn build-types
+- yarn start
 
 The server will start on port `5001`, the client will start & open a browser on `http://localhost:3000/`
 
 #### Docker
-
 From the root folder run:
-
 ```bash
 cd <workspace>/onto-web-demo
 docker build -t onto-web-demo .
 docker run -it -p 5001:5001 -p 3000:3000 onto-web-demo
 ```
-
 ### Docker compose
-
 From the root folder run:
-
 ```bash
 cd <workspace>/onto-web-demo
 docker-compose up
@@ -84,29 +79,24 @@ docker-compose up
 
 Reference: [Onto-Web-Demo](https://github.com/Sphereon/onto-web-demo)
 
-
 ## Demo RN
-
 This is the React-Native application (OP) that stores the self issued credentials
-
 ###Setup
-
 ### Requirements
-
 - The Android device must have a fingerprint reader
 - Make sure you have the Android platform SDK installed on your computer, your mobile is plugged in and in debug mode.
 - Execute `adb devices` and confirm your device is listed
 
 ### To build
-
 clone the repository:
-
 ```bash
 cd <workspace>
 git clone git@github.com:Sphereon/rn-did-siop-example-app.git
 ```
-
 From the root directory
+- yarn install
+- yarn nodeify
+- yarn android
 
 Note: Sphereon-Opensource/rn-did-siop-auth-lib.git may need to be removed from dependencies
 
@@ -119,8 +109,6 @@ yarn android
 ```
 
 Reference: [Demo-RN](https://github.com/Sphereon/rn-did-siop-example-app)
-
-
 ## GimlyID QR Code
 
 This is the QR code generator, it works with `React` and `React-Native`. It generates a QR code containing:
@@ -134,7 +122,6 @@ This is the QR code generator, it works with `React` and `React-Native`. It gene
 | `state`                 | `string`                     |               | This is a string representing a short UUID
 
 Reference: [GimlyID-QR-Code](https://github.com/Sphereon-Opensource/gimlyid-qr-code)
-
 
 ## GimlyID QR Code Scanner
 
@@ -150,11 +137,25 @@ A GimlyID QR code scanner component for `React-Native`. This scanner can scan QR
 
 Reference: [GimlyID-QR-Code-Scanner](https://github.com/Sphereon-Opensource/gimlyid-qr-code-scanner):
 
-
 ## DID Auth Siop
-
-SIOP v2 (REFRENCE) is an extension of OpenID Connect (REFRENCE) to allow End-users to act as OpenID Providers (OPs) themselves. Using Self-Issued OPs, End-users can authenticate themselves and present claims directly to the Relying Parties (RPs), typically a webapp, without relying on a third-party Identity Provider. This makes the solution fully self sovereign, as it does not rely on any third parties and strictly happens peer 2 peer, but still uses the OpenID Connect protocol. Next to the user acting as an OpenID Provider, this library also includes support for Verifiable Presentations (REFRENCE) using the Presentation Exchange (REFRENCE to DIF) support provided by Sphereon's pe-js library (REFRENCE). This means that the Relying Party can pose submission requirements on the Verifiable Credentials it would like to receive from the client/OP. The OP then checks whether it has the credentials to support the submission requirements. Only if that is the case it will send the relevant (parts of the) credentials as a Verifiable Presentation in the Authentication Response destined for the Webapp/Relying Party. The relying party in turn checks validity of the Verifiable Presentation(s) as well as the match with the submission requirements. Only if everything is verified successfully the RP serves the protected page(s). This means that the authentication can be extended with claims about the authenticating entity, but it can also be used to easily consume credentials from supporting applications, without having to setup DIDComm (REFRENCE) connections for instance. The term Self-Issued comes from the fact that the End-users (OP) issue self-signed ID Tokens to prove validity of the identifiers and claims. This is a trust model different from that of the rest of OpenID Connect where OP is run by the third party who issues ID Tokens on behalf of the End-user to the Relying Party upon the End-user's consent. This means the End-User is in control about his/her data instead of the 3rd party OP.
-
+SIOP v2 (REFRENCE) is an extension of OpenID Connect (REFRENCE) to allow End-users to act as OpenID Providers (OPs)
+themselves. Using Self-Issued OPs, End-users can authenticate themselves and present claims directly to the Relying
+Parties (RPs), typically a webapp, without relying on a third-party Identity Provider. This makes the solution fully
+self sovereign, as it does not rely on any third parties and strictly happens peer 2 peer, but still uses the OpenID
+Connect protocol. Next to the user acting as an OpenID Provider, this library also includes support for Verifiable
+Presentations (REFRENCE) using the Presentation Exchange (REFRENCE to DIF) support provided by Sphereon's pe-js library
+(REFRENCE). This means that the Relying Party can pose submission requirements on the Verifiable Credentials it would
+like to receive from the client/OP. The OP then checks whether it has the credentials to support the submission
+requirements. Only if that is the case it will send the relevant (parts of the) credentials as a Verifiable Presentation
+in the Authentication Response destined for the Webapp/Relying Party. The relying party in turn checks validity of the
+Verifiable Presentation(s) as well as the match with the submission requirements. Only if everything is verified
+successfully the RP serves the protected page(s). This means that the authentication can be extended with claims about
+the authenticating entity, but it can also be used to easily consume credentials from supporting applications, without
+having to setup DIDComm (REFRENCE) connections for instance. The term Self-Issued comes from the fact that the End-users
+(OP) issue self-signed ID Tokens to prove validity of the identifiers and claims. This is a trust model different from
+that of the rest of OpenID Connect where OP is run by the third party who issues ID Tokens on behalf of the End-user to
+the Relying Party upon the End-user's consent. This means the End-User is in control about his/her data instead of the
+3rd party OP.
 
 # Steps involved
 
@@ -165,39 +166,35 @@ Flow diagram:
 1. Client (OP) initiates an Auth request by POST-ing to an endpoint, like for instance `/did-siop/v1/authentications` or clicking a Login button and scanning a QR code
 2. Web (RP) receives the request and access the RP object which creates the authentication request as JWT, signs it and returns the response as an OpenID Connect URI
     1. JWT example:
-       JWT Header
-       
-       ```json
-        {
-          "alg": "ES256K",
-          "kid": "did:ethr:0xcBe71d18b5F1259faA9fEE8f9a5FAbe2372BE8c9#controller",
-          "typ": "JWT"
-        }
-        ```
-
-        JWT Payload
-
-        ```json
-        {
-          "iat": 1632336634,
-          "exp": 1632337234,
-          "response_type": "id_token",
-          "scope": "openid",
-          "client_id": "did:ethr:0xcBe71d18b5F1259faA9fEE8f9a5FAbe2372BE8c9",
-          "redirect_uri": "https://acme.com/siop/v1/sessions",
-          "iss": "did:ethr:0xcBe71d18b5F1259faA9fEE8f9a5FAbe2372BE8c9",
-          "response_mode": "post",
-          "nonce": "qBrR7mqnY3Qr49dAZycPF8FzgE83m6H0c2l0bzP4xSg",
-          "state": "b32f0087fc9816eb813fd11f",
-          "registration": {
-             "did_methods_supported": [
-              "did:ethr:",
-              "did:eosio:"
-             ],
-             "subject_identifiers_supported": "did"
-          }
-        }
-        ```
+    ```json
+    // JWT Header
+    {
+      "alg": "ES256K",
+      "kid": "did:ethr:0xcBe71d18b5F1259faA9fEE8f9a5FAbe2372BE8c9#controller",
+      "typ": "JWT"
+    }
+     
+    // JWT Payload
+   {
+      "iat": 1632336634,
+      "exp": 1632337234,
+      "response_type": "id_token",
+      "scope": "openid",
+      "client_id": "did:ethr:0xcBe71d18b5F1259faA9fEE8f9a5FAbe2372BE8c9",
+      "redirect_uri": "https://acme.com/siop/v1/sessions",
+      "iss": "did:ethr:0xcBe71d18b5F1259faA9fEE8f9a5FAbe2372BE8c9",
+      "response_mode": "post",
+      "nonce": "qBrR7mqnY3Qr49dAZycPF8FzgE83m6H0c2l0bzP4xSg",
+      "state": "b32f0087fc9816eb813fd11f",
+      "registration": {
+         "did_methods_supported": [
+          "did:ethr:",
+          "did:eosio:"
+         ],
+         "subject_identifiers_supported": "did"
+      }
+   }
+    ```
 
     2. The Signed JWT, called the JWS follows the following scheme (JWS Compact Serialization, https://datatracker.ietf.org/doc/html/rfc7515#section-7.1):
 
@@ -206,9 +203,8 @@ Flow diagram:
    BASE64URL(JWS Signature)`
 
     3. Create the URI containing the JWS:
-    
-    ```
-    openid://?response_type=id_token 
+   ```
+   openid://?response_type=id_token 
       &scope=openid
       &client_id=did%3Aethr%3A0xBC9484414c1DcA4Aa85BadBBd8a36E3973934444
       &redirect_uri=https%3A%2F%2Frp.acme.com%2Fsiop%2Fjwts
@@ -217,8 +213,7 @@ Flow diagram:
       &nonce=qBrR7mqnY3Qr49dAZycPF8FzgE83m6H0c2l0bzP4xSg&state=b32f0087fc9816eb813fd11f
       &registration=%5Bobject%20Object%5D
       &request=<JWS here>
-    ```
-   
+   ```
 3. Web receives the Auth Request URI Object from RP
 4. Web sends the Auth Request URI in the response body to the client
 5. Client accesses OP object to create an Authentication response
@@ -226,21 +221,16 @@ Flow diagram:
 7. OP creates the authentication response object as follows:
     1. Create an ID token as shown below:
 
-    JWT encoded ID Token
-    JWT Header
-   
-    ```json
+    ````json
+    // JWT encoded ID Token
+    // JWT Header
     {
       "alg": "ES256K",
       "kid": "did:ethr:0x998D43DA5d9d78500898346baf2d9B1E39Eb0Dda#keys-1",
-      "typ": "JWT"
+      "typ": "JWT",
     }
-    ```
-   
-    JWT Payload
-   
-    ```json
-    {
+    // JWT Payload
+   {
       "iat": 1632343857.084,
       "exp": 1632344857.084,
       "iss": "https://self-issued.me/v2",
@@ -363,14 +353,10 @@ expect(verifiedAuthResponseWithJWT.payload.nonce).toMatch("qBrR7mqnY3Qr49dAZycPF
 ```
 
 ## DID resolution
-
 ### Description
-
 Resolves the DID to a DID document using the DID method provided in didUrl and using DIFs [did-resolver](https://github.com/decentralized-identity/did-resolver) and Sphereons [Universal registrar and resolver client](https://github.com/Sphereon-Opensource/did-uni-client).
 This process allows retrieving public keys and verificationMethod material, as well as services provided by a DID controller. Can be used in both the webapp and mobile applications. Uses the did-uni-client, but could use other DIF did-resolver drivers as well. The benefit of the uni client is that it can resolve many DID methods. Since the resolution itself is provided by the mentioned external dependencies above, we suffice with a usage example.
-
 #### Usage
-
 ```typescript
 import { Resolver } from 'did-resolver'
 import { getResolver as getUniResolver } from '@sphereon/did-uni-client'
@@ -380,13 +366,10 @@ const resolver = new Resolver(getUniResolver('ethr'));
 resolver.resolve('did:ethr:0x998D43DA5d9d78500898346baf2d9B1E39Eb0Dda').then(doc => console.log)
 ```
 
-
 ## JWT and DID creation and verification
-
 Please note that this chapter is about low level JWT functions, which normally aren't used by end users of this library. Typically, you use the AuthenticationRequest and Response classes (low-level) or the OP and RP classes (high-level).
 
 ### Create JWT
-
 Creates a signed JWT given a DID which becomes the issuer, a signer function, and a payload over which the signature is created.
 
 #### Usage
@@ -397,12 +380,10 @@ createDidJWT({requested: ['name', 'phone']}, {issuer: 'did:eosio:example', signe
 ```
 
 ### Verify JWT
-
 Verifies the given JWT. If the JWT is valid, the promise returns an object including the JWT, the payload of the JWT, and the DID Document of the issuer of the JWT, using the resolver mentioned earlier. The checks performed include, general JWT decoding, DID resolution, Proof purposes
  allows restriction of verification methods to the ones specifically listed, otherwise the 'authentication' verification method of the resolved DID document will be used
 
 #### Usage
-
 ```typescript
 verifyDidJWT(jwt, resolver, {audience: '6B2bRWU3F7j3REx3vkJ..'}).then(verifiedJWT => {
        const did = verifiedJWT.issuer;                          // DID of signer
@@ -410,19 +391,16 @@ verifyDidJWT(jwt, resolver, {audience: '6B2bRWU3F7j3REx3vkJ..'}).then(verifiedJW
        const doc = verifiedJWT.didResolutionResult.didDocument; // DID Document of signer
        const jwt = verifiedJWT.jwt;                             // JWS in string format 
        const signerKeyId = verifiedJWT.signer.id;               // ID of key in DID document that signed JWT
-       // ... etc.
+       ...
    });
 ```
-
 
 ## AuthenticationRequest class
 
 ### createURI
-
 Create a signed URL encoded URI with a signed SIOP Authentication request
 
 #### Usage
-
 ```typescript
 const EXAMPLE_REDIRECT_URL = "https://acme.com/hello";
 const EXAMPLE_REFERENCE_URL = "https://rp.acme.com/siop/jwts";
@@ -471,7 +449,6 @@ AuthenticationRequest.createURI(opts)
 ```
 
 ### verifyJWT
-
 Verifies a SIOP Authentication Request JWT. Throws an error if the verifation fails. Returns the verified JWT and metadata if the verification succeeds
 
 #### Usage
@@ -502,7 +479,6 @@ AuthenticationRequest.verifyJWT(jwt).then(req => {
 ## AuthenticationResponse class
 
 ### verifyAuthResponse
-
 Verifies a DidAuth ID Response Token and the audience. Return a DID Auth Validation Response, which contains the JWT payload as well as the verification method that signed the JWT.
 
 #### Usage
@@ -524,7 +500,6 @@ verifyAuthResponse('ey....', 'my-audience').then(resp => {
 ```
 
 ### verifyAccessToken
-
 Verifies the bearer access token on the RP side as received from the OP/client. Throws an error if the token is invalid, otherwise returns the JWT
 
 #### Usage
